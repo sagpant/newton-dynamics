@@ -4160,7 +4160,7 @@ bool ImGui::Begin(const char* name, bool* p_open, const ImVec2& size_on_first_us
                 const ImVec2 br = window->Rect().GetBR();
                 const ImRect resize_rect(br - ImVec2(resize_corner_size * 0.75f, resize_corner_size * 0.75f), br);
                 const ImGuiID resize_id = window->GetID("#RESIZE");
-                bool hovered, held;
+                bool hovered, held = false;
                 ButtonBehavior(resize_rect, resize_id, &hovered, &held, ImGuiButtonFlags_FlattenChilds);
                 resize_col = GetColorU32(held ? ImGuiCol_ResizeGripActive : hovered ? ImGuiCol_ResizeGripHovered : ImGuiCol_ResizeGrip);
 
@@ -9476,7 +9476,7 @@ void ImGui::Columns(int columns_count, const char* id, bool border)
             if (IsClippedEx(column_rect, &column_id, false))
                 continue;
 
-            bool hovered, held;
+            bool hovered, held = false;
             ButtonBehavior(column_rect, column_id, &hovered, &held);
             if (hovered || held)
                 g.MouseCursor = ImGuiMouseCursor_ResizeEW;
